@@ -2,7 +2,7 @@
 
 public class Product
 {
-    public Product(string name, decimal price)
+    public Product(string name, decimal price, ProductUnit unit)
     {
         
     }
