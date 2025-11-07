@@ -2,18 +2,18 @@
 
 public class Supermarket
 {
-    private List<Product> _productsInCart = [];
+    private Dictionary<Product, int> _productsInCart = [];
 
     public void AddToCart(Product product, int quantity)
     {
-        _productsInCart.Add(product);
+        _productsInCart.Add(product, quantity);
     }
 
     public Receipt Checkout()
     {
         var receipt = new Receipt();
         var products = new Dictionary<Product, decimal>();
-        products.Add(_productsInCart[0], _productsInCart[0].GetPrice());
+        products.Add(_productsInCart.Keys.First(), _productsInCart.GetValueOrDefault(_productsInCart.Keys.First()) * _productsInCart.Keys.First().GetPrice());
         receipt.AddProducts(products);
         return receipt;
     }
