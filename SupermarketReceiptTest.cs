@@ -5,7 +5,7 @@ namespace SupermarketReceipt;
 public class SupermarketReceiptTest
 {
     [Fact]
-    public void Cuando_ComproUnaCremaDeDientesAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_0_99()
+    public void Cuando_ComproUnCepilloDeDientesAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_0_99()
     {
         var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
@@ -29,7 +29,7 @@ public class SupermarketReceiptTest
     }
     
     [Fact]
-    public void Cuando_ComproDosCremasDeDientesAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_1_98()
+    public void Cuando_ComproDosCepillosDeDientesAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_1_98()
     {
         var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
