@@ -39,4 +39,18 @@ public class SupermarketReceiptTest
         
         receipt.GetTotalPrice().Should().Be(1.98m);
     }
+    
+    [Fact]
+    public void Cuando_ComproDosCepillosDeDientesYUnKiloDeManzanasAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_3_97()
+    {
+        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
+        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
+        var supermarket = new Supermarket();
+        
+        supermarket.AddToCart(toothbrush, 2);
+        supermarket.AddToCart(apples, 1);
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(3.97m);
+    }
 }
