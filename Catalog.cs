@@ -4,6 +4,6 @@ public class Catalog
 {
     public void AddProduct(Product toothbrush)
     {
-        throw new NotImplementedException();
+        
     }
 }

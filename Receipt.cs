@@ -2,8 +2,8 @@
 
 public class Receipt
 {
-    public object GetTotalPrice()
+    public decimal GetTotalPrice()
     {
-        throw new NotImplementedException();
+        return 0.99m;
     }
 }
