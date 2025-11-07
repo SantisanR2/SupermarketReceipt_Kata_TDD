@@ -3,10 +3,6 @@
 public class Supermarket
 {
     private List<Product> _productsInCart = [];
-    public Supermarket(Catalog catalog)
-    {
-        
-    }
 
     public void AddToCart(Product product, int quantity)
     {
