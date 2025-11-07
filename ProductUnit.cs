@@ -2,5 +2,6 @@
 
 public enum ProductUnit
 {
-    Unit
+    Unit,
+    Kilo
 }
