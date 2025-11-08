@@ -4,5 +4,6 @@ public enum ProductUnit
 {
     Unit,
     Kilo,
-    Box
+    Box,
+    Bag
 }
