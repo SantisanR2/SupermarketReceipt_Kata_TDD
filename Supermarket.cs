@@ -31,7 +31,7 @@ public class Supermarket
             }
             else if (_discounts.Contains("toothpaste"))
             {
-                products.Add(product.Key, 7.49m);
+                products.Add(product.Key, Math.Truncate(product.Value/5m) * 7.49m + (product.Value % 5) * product.Key.GetPrice());
             }
             else
             {
