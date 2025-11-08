@@ -21,6 +21,10 @@ public class Supermarket
             {
                 products.Add(product.Key, Math.Truncate(product.Value/2m) * product.Key.GetPrice() + (product.Value % 2) * product.Key.GetPrice());
             }
+            else if (_discounts.Contains("apple"))
+            {
+                products.Add(product.Key, 1.592m);
+            }
             else
             {
                 products.Add(product.Key, product.Key.GetPrice() * product.Value);
