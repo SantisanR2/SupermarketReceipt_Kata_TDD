@@ -108,4 +108,17 @@ public class SupermarketReceiptTest
         
         receipt.GetTotalPrice().Should().Be(1.592m);
     }
+    
+    [Fact]
+    public void Cuando_ComproDosKilosDeManzanasConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_3_184()
+    {
+        var apples = new Product("Apple", 0.99m, ProductUnit.Unit);
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(apples, 2);
+        supermarket.ApplyDiscount("apple");
+        
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(3.184m);
+    }
 }
