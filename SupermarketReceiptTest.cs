@@ -76,7 +76,8 @@ public class SupermarketReceiptTest
         var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(toothbrush, 2);
-        supermarket.ApplyDiscount("toothbrush");
+        var discount = new ToothbrushDiscount(toothbrush);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -89,7 +90,8 @@ public class SupermarketReceiptTest
         var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(toothbrush, 3);
-        supermarket.ApplyDiscount("toothbrush");
+        var discount = new ToothbrushDiscount(toothbrush);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -102,7 +104,8 @@ public class SupermarketReceiptTest
         var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
         supermarket.AddToCart(apples, 1);
-        supermarket.ApplyDiscount("apple");
+        var discount = new AppleDiscount(apples);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -115,7 +118,8 @@ public class SupermarketReceiptTest
         var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
         supermarket.AddToCart(apples, 2);
-        supermarket.ApplyDiscount("apple");
+        var discount = new AppleDiscount(apples);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -128,7 +132,8 @@ public class SupermarketReceiptTest
         var rice = new Product("Rice", 2.49m, ProductUnit.Bag);
         var supermarket = new Supermarket();
         supermarket.AddToCart(rice, 1);
-        supermarket.ApplyDiscount("rice");
+        var discount = new RiceDiscount(rice);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -141,7 +146,8 @@ public class SupermarketReceiptTest
         var rice = new Product("Rice", 2.49m, ProductUnit.Bag);
         var supermarket = new Supermarket();
         supermarket.AddToCart(rice, 2);
-        supermarket.ApplyDiscount("rice");
+        var discount = new RiceDiscount(rice);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -154,7 +160,8 @@ public class SupermarketReceiptTest
         var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(toothpaste, 5);
-        supermarket.ApplyDiscount("toothpaste");
+        var discount = new ToothpasteDiscount(toothpaste);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -167,7 +174,8 @@ public class SupermarketReceiptTest
         var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(toothpaste, 6);
-        supermarket.ApplyDiscount("toothpaste");
+        var discount = new ToothpasteDiscount(toothpaste);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -180,7 +188,8 @@ public class SupermarketReceiptTest
         var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
         var supermarket = new Supermarket();
         supermarket.AddToCart(tomatoes, 2);
-        supermarket.ApplyDiscount("tomatoes");
+        var discount = new TomatoesDiscount(tomatoes);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -193,7 +202,8 @@ public class SupermarketReceiptTest
         var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
         var supermarket = new Supermarket();
         supermarket.AddToCart(tomatoes, 3);
-        supermarket.ApplyDiscount("tomatoes");
+        var discount = new TomatoesDiscount(tomatoes);
+        supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
         
@@ -214,11 +224,16 @@ public class SupermarketReceiptTest
         supermarket.AddToCart(apples, 1);
         supermarket.AddToCart(rice, 1);
         supermarket.AddToCart(toothbrush, 2);
-        supermarket.ApplyDiscount("toothpaste");
-        supermarket.ApplyDiscount("apple");
-        supermarket.ApplyDiscount("rice");
-        supermarket.ApplyDiscount("toothbrush");
-        supermarket.ApplyDiscount("tomatoes");
+        var discountToothpaste = new ToothpasteDiscount(toothpaste);
+        var discountTomatoes = new TomatoesDiscount(tomatoes);
+        var discountApples = new AppleDiscount(apples);
+        var discountRice = new RiceDiscount(rice);
+        var discountToothbrush = new ToothbrushDiscount(toothbrush);
+        supermarket.ApplyDiscount(discountToothpaste);
+        supermarket.ApplyDiscount(discountTomatoes);
+        supermarket.ApplyDiscount(discountApples);
+        supermarket.ApplyDiscount(discountRice);
+        supermarket.ApplyDiscount(discountToothbrush);
         
         var receipt = supermarket.Checkout();
         

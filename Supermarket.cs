@@ -3,7 +3,7 @@
 public class Supermarket
 {
     private Dictionary<Product, int> _productsInCart = [];
-    private List<string> _discounts = [];
+    private List<IDiscount> _discounts = [];
 
     public void AddToCart(Product product, int quantity)
     {
@@ -15,31 +15,39 @@ public class Supermarket
         var receipt = new Receipt();
         var products = new Dictionary<Product, decimal>();
 
-        foreach (var product in _productsInCart)
+        foreach (var keyValuePair in _productsInCart)
         {
-            if (_discounts.Contains("toothbrush") && product.Key.GetName().Equals("Toothbrush"))
+            var product = keyValuePair.Key;
+            var numberOfProducts = keyValuePair.Value;
+            
+            if (_discounts.Any(d => d is AppleDiscount) && product.GetName() is "Apple")
             {
-                products.Add(product.Key, Math.Truncate(product.Value/2m) * product.Key.GetPrice() + (product.Value % 2) * product.Key.GetPrice());
+                var appleDiscount = new AppleDiscount(product);
+                products.Add(product, appleDiscount.CalculatePrice(numberOfProducts));
             }
-            else if (_discounts.Contains("apple") && product.Key.GetName().Equals("Apple"))
+            else if (_discounts.Any(d => d is TomatoesDiscount) && product.GetName() is "Cherry tomatoes")
             {
-                products.Add(product.Key, product.Value * product.Key.GetPrice() * 0.8m);
+                var tomatoesDiscount = new TomatoesDiscount(product);
+                products.Add(product, tomatoesDiscount.CalculatePrice(numberOfProducts));
             }
-            else if (_discounts.Contains("rice") && product.Key.GetName().Equals("Rice"))
+            else if (_discounts.Any(d => d is ToothpasteDiscount) && product.GetName() is "Toothpaste")
             {
-                products.Add(product.Key, product.Value * product.Key.GetPrice() * 0.9m);
+                var toothpasteDiscount = new ToothpasteDiscount(product);
+                products.Add(product, toothpasteDiscount.CalculatePrice(numberOfProducts));
             }
-            else if (_discounts.Contains("toothpaste") && product.Key.GetName().Equals("Toothpaste"))
+            else if (_discounts.Any(d => d is RiceDiscount) && product.GetName() is "Rice")
             {
-                products.Add(product.Key, Math.Truncate(product.Value/5m) * 7.49m + (product.Value % 5) * product.Key.GetPrice());
+                var riceDiscount = new RiceDiscount(product);
+                products.Add(product, riceDiscount.CalculatePrice(numberOfProducts));
             }
-            else if (_discounts.Contains("tomatoes") && product.Key.GetName().Equals("Cherry tomatoes"))
+            else if (_discounts.Any(d => d is ToothbrushDiscount) && product.GetName() is "Toothbrush")
             {
-                products.Add(product.Key, Math.Truncate(product.Value/2m) * 0.99m + (product.Value % 2) * product.Key.GetPrice());
+                var toothbrushDiscount = new ToothbrushDiscount(product);
+                products.Add(product, toothbrushDiscount.CalculatePrice(numberOfProducts));
             }
             else
             {
-                products.Add(product.Key, product.Key.GetPrice() * product.Value);
+                products.Add(product, product.GetPrice() * numberOfProducts);
             }
         }
         
@@ -47,7 +55,7 @@ public class Supermarket
         return receipt;
     }
 
-    public void ApplyDiscount(string discount)
+    public void ApplyDiscount(IDiscount discount)
     {
         _discounts.Add(discount);
     }
