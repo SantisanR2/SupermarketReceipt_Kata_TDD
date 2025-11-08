@@ -199,4 +199,29 @@ public class SupermarketReceiptTest
         
         receipt.GetTotalPrice().Should().Be(1.68m);
     }
+    
+    [Fact]
+    public void Cuando_ComproSeisTubosDePastaDeDientes_UnKiloDeManzanas_DosCepillosDeDientes_UnaBolsaDeArroz_Y_TresCajasDeTomatesCherryConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_15_783()
+    {
+        var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
+        var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
+        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
+        var rice = new Product("Rice", 2.49m, ProductUnit.Bag);
+        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(toothpaste, 6);
+        supermarket.AddToCart(tomatoes, 3);
+        supermarket.AddToCart(apples, 1);
+        supermarket.AddToCart(rice, 1);
+        supermarket.AddToCart(toothbrush, 2);
+        supermarket.ApplyDiscount("toothpaste");
+        supermarket.ApplyDiscount("apple");
+        supermarket.ApplyDiscount("rice");
+        supermarket.ApplyDiscount("toothbrush");
+        supermarket.ApplyDiscount("tomatoes");
+        
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(15.783m);
+    }
 }
