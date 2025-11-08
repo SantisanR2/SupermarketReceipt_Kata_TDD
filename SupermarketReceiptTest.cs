@@ -4,13 +4,18 @@ namespace SupermarketReceipt;
 
 public class SupermarketReceiptTest
 {
+    private readonly Product _toothbrush = new ("Toothbrush", 0.99m, ProductUnit.Unit);
+    private readonly Product _toothpaste = new ("Toothpaste", 1.79m, ProductUnit.Unit);
+    private readonly Product _tomatoes = new ("Cherry tomatoes", 0.69m, ProductUnit.Box);
+    private readonly Product _apples = new ("Apple", 1.99m, ProductUnit.Kilo);
+    private readonly Product _rice = new ("Rice", 2.49m, ProductUnit.Bag);
+    
     [Fact]
     public void Cuando_ComproUnCepilloDeDientesAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_0_99()
     {
-        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         
-        supermarket.AddToCart(toothbrush, 1);
+        supermarket.AddToCart(_toothbrush, 1);
         var receipt = supermarket.Checkout();
         
         receipt.GetTotalPrice().Should().Be(0.99m);
@@ -19,10 +24,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproUnKiloDeManzanaAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_1_99()
     {
-        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
         
-        supermarket.AddToCart(apples, 1);
+        supermarket.AddToCart(_apples, 1);
         var receipt = supermarket.Checkout();
         
         receipt.GetTotalPrice().Should().Be(1.99m);
@@ -31,10 +35,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosCepillosDeDientesAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_1_98()
     {
-        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         
-        supermarket.AddToCart(toothbrush, 2);
+        supermarket.AddToCart(_toothbrush, 2);
         var receipt = supermarket.Checkout();
         
         receipt.GetTotalPrice().Should().Be(1.98m);
@@ -43,12 +46,10 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosCepillosDeDientesYUnKiloDeManzanasAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_3_97()
     {
-        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
-        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
         
-        supermarket.AddToCart(toothbrush, 2);
-        supermarket.AddToCart(apples, 1);
+        supermarket.AddToCart(_toothbrush, 2);
+        supermarket.AddToCart(_apples, 1);
         var receipt = supermarket.Checkout();
         
         receipt.GetTotalPrice().Should().Be(3.97m);
@@ -57,14 +58,11 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproUnaBolsaDeTomatesCherryUnKiloDeManzanasYUnCepilloDeDientesAPrecioNormal_ElPrecioTotalDelRecibo_Debe_SerDe_3_67()
     {
-        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
-        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
-        var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
         var supermarket = new Supermarket();
         
-        supermarket.AddToCart(toothbrush, 1);
-        supermarket.AddToCart(apples, 1);
-        supermarket.AddToCart(tomatoes, 1);
+        supermarket.AddToCart(_toothbrush, 1);
+        supermarket.AddToCart(_apples, 1);
+        supermarket.AddToCart(_tomatoes, 1);
         var receipt = supermarket.Checkout();
         
         receipt.GetTotalPrice().Should().Be(3.67m);
@@ -73,10 +71,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosCepillosDeDientesConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_0_99()
     {
-        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(toothbrush, 2);
-        var discount = new ToothbrushDiscount(toothbrush);
+        supermarket.AddToCart(_toothbrush, 2);
+        var discount = new ToothbrushDiscount(_toothbrush);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -87,10 +84,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproTresCepillosDeDientesConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_1_98()
     {
-        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(toothbrush, 3);
-        var discount = new ToothbrushDiscount(toothbrush);
+        supermarket.AddToCart(_toothbrush, 3);
+        var discount = new ToothbrushDiscount(_toothbrush);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -101,10 +97,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproUnKiloDeManzanasConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_1_592()
     {
-        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(apples, 1);
-        var discount = new AppleDiscount(apples);
+        supermarket.AddToCart(_apples, 1);
+        var discount = new AppleDiscount(_apples);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -115,10 +110,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosKilosDeManzanasConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_3_184()
     {
-        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(apples, 2);
-        var discount = new AppleDiscount(apples);
+        supermarket.AddToCart(_apples, 2);
+        var discount = new AppleDiscount(_apples);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -129,10 +123,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproUnaBolsaDeArrozConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_2_241()
     {
-        var rice = new Product("Rice", 2.49m, ProductUnit.Bag);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(rice, 1);
-        var discount = new RiceDiscount(rice);
+        supermarket.AddToCart(_rice, 1);
+        var discount = new RiceDiscount(_rice);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -143,10 +136,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosBolsasDeArrozConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_4_482()
     {
-        var rice = new Product("Rice", 2.49m, ProductUnit.Bag);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(rice, 2);
-        var discount = new RiceDiscount(rice);
+        supermarket.AddToCart(_rice, 2);
+        var discount = new RiceDiscount(_rice);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -157,10 +149,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproCincoTubosDePastaDeDientesConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_7_49()
     {
-        var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(toothpaste, 5);
-        var discount = new ToothpasteDiscount(toothpaste);
+        supermarket.AddToCart(_toothpaste, 5);
+        var discount = new ToothpasteDiscount(_toothpaste);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -171,10 +162,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproSeisTubosDePastaDeDientesConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_9_28()
     {
-        var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(toothpaste, 6);
-        var discount = new ToothpasteDiscount(toothpaste);
+        supermarket.AddToCart(_toothpaste, 6);
+        var discount = new ToothpasteDiscount(_toothpaste);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -185,10 +175,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosCajasDeTomatesCherryConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_0_99()
     {
-        var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(tomatoes, 2);
-        var discount = new TomatoesDiscount(tomatoes);
+        supermarket.AddToCart(_tomatoes, 2);
+        var discount = new TomatoesDiscount(_tomatoes);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -199,10 +188,9 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproTresCajasDeTomatesCherryConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_1_68()
     {
-        var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(tomatoes, 3);
-        var discount = new TomatoesDiscount(tomatoes);
+        supermarket.AddToCart(_tomatoes, 3);
+        var discount = new TomatoesDiscount(_tomatoes);
         supermarket.ApplyDiscount(discount);
         
         var receipt = supermarket.Checkout();
@@ -213,22 +201,17 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproSeisTubosDePastaDeDientes_UnKiloDeManzanas_DosCepillosDeDientes_UnaBolsaDeArroz_Y_TresCajasDeTomatesCherryConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_15_783()
     {
-        var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
-        var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
-        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
-        var rice = new Product("Rice", 2.49m, ProductUnit.Bag);
-        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(toothpaste, 6);
-        supermarket.AddToCart(tomatoes, 3);
-        supermarket.AddToCart(apples, 1);
-        supermarket.AddToCart(rice, 1);
-        supermarket.AddToCart(toothbrush, 2);
-        var discountToothpaste = new ToothpasteDiscount(toothpaste);
-        var discountTomatoes = new TomatoesDiscount(tomatoes);
-        var discountApples = new AppleDiscount(apples);
-        var discountRice = new RiceDiscount(rice);
-        var discountToothbrush = new ToothbrushDiscount(toothbrush);
+        supermarket.AddToCart(_toothpaste, 6);
+        supermarket.AddToCart(_tomatoes, 3);
+        supermarket.AddToCart(_apples, 1);
+        supermarket.AddToCart(_rice, 1);
+        supermarket.AddToCart(_toothbrush, 2);
+        var discountToothpaste = new ToothpasteDiscount(_toothpaste);
+        var discountTomatoes = new TomatoesDiscount(_tomatoes);
+        var discountApples = new AppleDiscount(_apples);
+        var discountRice = new RiceDiscount(_rice);
+        var discountToothbrush = new ToothbrushDiscount(_toothbrush);
         supermarket.ApplyDiscount(discountToothpaste);
         supermarket.ApplyDiscount(discountTomatoes);
         supermarket.ApplyDiscount(discountApples);

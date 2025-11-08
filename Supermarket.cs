@@ -2,8 +2,8 @@
 
 public class Supermarket
 {
-    private Dictionary<Product, int> _productsInCart = [];
-    private List<IDiscount> _discounts = [];
+    private readonly Dictionary<Product, int> _productsInCart = [];
+    private readonly List<IDiscount> _discounts = [];
 
     public void AddToCart(Product product, int quantity)
     {
