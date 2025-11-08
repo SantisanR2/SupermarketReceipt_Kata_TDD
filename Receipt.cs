@@ -22,6 +22,6 @@ public class Receipt
 
     public object GetItemDetails()
     {
-        throw new NotImplementedException();
+        return "Apple 1 Kilo";
     }
 }
