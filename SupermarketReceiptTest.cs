@@ -173,4 +173,17 @@ public class SupermarketReceiptTest
         
         receipt.GetTotalPrice().Should().Be(9.28m);
     }
+    
+    [Fact]
+    public void Cuando_ComproDosCajasDeTomatesCherryConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_0_99()
+    {
+        var tomatoes = new Product("Cherry tomatoes", 0.69m, ProductUnit.Box);
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(tomatoes, 2);
+        supermarket.ApplyDiscount("tomatoes");
+        
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(0.99m);
+    }
 }
