@@ -134,4 +134,17 @@ public class SupermarketReceiptTest
         
         receipt.GetTotalPrice().Should().Be(2.241m);
     }
+    
+    [Fact]
+    public void Cuando_ComproDosBolsasDeArrozConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_4_482()
+    {
+        var rice = new Product("Rice", 2.49m, ProductUnit.Bag);
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(rice, 2);
+        supermarket.ApplyDiscount("rice");
+        
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(4.482m);
+    }
 }
