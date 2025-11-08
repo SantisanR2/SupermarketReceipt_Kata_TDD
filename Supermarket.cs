@@ -26,6 +26,7 @@ public class Supermarket
                 price = product.GetPrice() * numberOfProducts;
                 
             products.Add(product, price);
+            product.AddQuantity(numberOfProducts);
         }
         
         receipt.AddProducts(products);
