@@ -3,6 +3,7 @@
 public class Receipt
 {
     private Dictionary<Product, decimal> _products = [];
+    private List<string> _appliedDiscounts = [];
     public decimal GetTotalPrice()
     {
         var price = 0m;
@@ -34,11 +35,18 @@ public class Receipt
 
     public string GetAppliedDiscounts()
     {
-        if (_products.Count == 1)
+        var discounts = "";
+
+        foreach (var discount in _appliedDiscounts)
         {
-            return "Apple Discount Applied";
+            discounts += $"{discount} Applied\n";
         }
 
-        return "Apple Discount Applied\nRice Discount Applied";
+        return discounts.TrimEnd('\n');
+    }
+
+    public void AddAppliedDiscounts(List<string> discounts)
+    {
+        _appliedDiscounts = discounts;
     }
 }

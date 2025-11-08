@@ -14,6 +14,7 @@ public class Supermarket
     {
         var receipt = new Receipt();
         var products = new Dictionary<Product, decimal>();
+        var appliedDiscounts = new List<string>();
 
         foreach (var (product, numberOfProducts) in _productsInCart)
         {
@@ -21,7 +22,10 @@ public class Supermarket
             var applicableDiscount = _discounts.FirstOrDefault(d => d.IsApplicableTo(product));
             
             if (applicableDiscount != null)
+            {
                 price = applicableDiscount.CalculatePrice(numberOfProducts);
+                appliedDiscounts.Add(applicableDiscount.GetDiscountName());
+            }
             else
                 price = product.GetPrice() * numberOfProducts;
                 
@@ -30,6 +34,7 @@ public class Supermarket
         }
         
         receipt.AddProducts(products);
+        receipt.AddAppliedDiscounts(appliedDiscounts);
         return receipt;
     }
 

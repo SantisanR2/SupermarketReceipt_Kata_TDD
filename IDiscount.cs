@@ -4,6 +4,7 @@ public interface IDiscount
 {
     decimal CalculatePrice(int quantity);
     bool IsApplicableTo(Product product);
+    string GetDiscountName();
 }
 
 public class AppleDiscount(Product apple) : IDiscount
@@ -14,6 +15,8 @@ public class AppleDiscount(Product apple) : IDiscount
     }
     
     public bool IsApplicableTo(Product product) => product.GetName() == apple.GetName();
+    
+    public string GetDiscountName() => "Apple Discount";
 }
 
 public class TomatoesDiscount(Product tomatoes) : IDiscount
@@ -24,6 +27,8 @@ public class TomatoesDiscount(Product tomatoes) : IDiscount
     }
     
     public bool IsApplicableTo(Product product) => product.GetName() == tomatoes.GetName();
+    
+    public string GetDiscountName() => "Cherry Tomatoes Discount";
 }
 
 public class ToothpasteDiscount(Product toothpaste) : IDiscount
@@ -34,6 +39,8 @@ public class ToothpasteDiscount(Product toothpaste) : IDiscount
     }
     
     public bool IsApplicableTo(Product product) => product.GetName() == toothpaste.GetName();
+    
+    public string GetDiscountName() => "Toothpaste Discount";
 }
 
 public class RiceDiscount(Product rice) : IDiscount
@@ -44,6 +51,8 @@ public class RiceDiscount(Product rice) : IDiscount
     }
     
     public bool IsApplicableTo(Product product) => product.GetName() == rice.GetName();
+    
+    public string GetDiscountName() => "Rice Discount";
 }
 
 public class ToothbrushDiscount(Product toothbrush) : IDiscount
@@ -54,4 +63,6 @@ public class ToothbrushDiscount(Product toothbrush) : IDiscount
     }
     
     public bool IsApplicableTo(Product product) => product.GetName() == toothbrush.GetName();
+    
+    public string GetDiscountName() => "Toothbrush Discount";
 }
