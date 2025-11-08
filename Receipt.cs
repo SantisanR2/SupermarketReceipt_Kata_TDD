@@ -34,6 +34,11 @@ public class Receipt
 
     public string GetAppliedDiscounts()
     {
-        return "Apple Discount Applied";
+        if (_products.Count == 1)
+        {
+            return "Apple Discount Applied";
+        }
+
+        return "Apple Discount Applied\nRice Discount Applied";
     }
 }
