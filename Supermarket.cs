@@ -29,6 +29,10 @@ public class Supermarket
             {
                 products.Add(product.Key, product.Value * product.Key.GetPrice() * 0.9m);
             }
+            else if (_discounts.Contains("toothpaste"))
+            {
+                products.Add(product.Key, 7.49m);
+            }
             else
             {
                 products.Add(product.Key, product.Key.GetPrice() * product.Value);

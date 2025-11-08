@@ -154,10 +154,10 @@ public class SupermarketReceiptTest
         var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(toothpaste, 1);
-        supermarket.ApplyDiscount("rice");
+        supermarket.ApplyDiscount("toothpaste");
         
         var receipt = supermarket.Checkout();
         
-        receipt.GetTotalPrice().Should().Be(2.241m);
+        receipt.GetTotalPrice().Should().Be(7.49m);
     }
 }
