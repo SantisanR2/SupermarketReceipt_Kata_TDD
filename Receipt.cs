@@ -26,7 +26,7 @@ public class Receipt
         
         foreach (var (product, price) in _products)
         {
-            details += $"{product.GetName()} {product.GetQuantity()} {product.getUnit()}\n";
+            details += $"{product.GetName()} {product.GetQuantity()} {product.GetUnit()}\n";
         }
         
         return details.TrimEnd('\n');

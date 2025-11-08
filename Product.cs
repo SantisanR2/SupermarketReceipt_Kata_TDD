@@ -1,26 +1,17 @@
 ﻿namespace SupermarketReceipt;
 
-public class Product
+public class Product(string name, decimal price, ProductUnit unit)
 {
-    private decimal _price;
-    private string _name;
     private int _quantity;
-    private ProductUnit _unit;
-    public Product(string name, decimal price, ProductUnit unit)
-    {
-        _name = name;
-        _price = price;
-        _unit = unit;
-    }
 
     public decimal GetPrice()
     {
-        return _price;
+        return price;
     }
 
     public string GetName()
     {
-        return _name;
+        return name;
     }
 
     public void AddQuantity(int numberOfProducts)
@@ -33,8 +24,8 @@ public class Product
         return _quantity;
     }
 
-    public string getUnit()
+    public string GetUnit()
     {
-        return _unit.ToString();
+        return unit.ToString();
     }
 }
