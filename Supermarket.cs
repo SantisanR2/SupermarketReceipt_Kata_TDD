@@ -25,6 +25,10 @@ public class Supermarket
             {
                 products.Add(product.Key, product.Value * product.Key.GetPrice() * 0.8m);
             }
+            else if (_discounts.Contains("rice"))
+            {
+                products.Add(product.Key, 2.241m);
+            }
             else
             {
                 products.Add(product.Key, product.Key.GetPrice() * product.Value);
