@@ -19,4 +19,9 @@ public class Receipt
     {
         _products = products;
     }
+
+    public object GetItemDetails()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -222,4 +222,15 @@ public class SupermarketReceiptTest
         
         receipt.GetTotalPrice().Should().Be(15.783m);
     }
+
+    [Fact]
+    public void Cuando_ComproUnKiloDeManzanas_LosDetallesDeLaCompraDelRecibo_Debe_DecirUnKiloDeManzana()
+    {
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(_apples, 1);
+
+        var receipt = supermarket.Checkout();
+
+        receipt.GetItemDetails().Should().Be("Apple 1 Kilo");
+    }
 }
