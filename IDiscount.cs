@@ -13,7 +13,7 @@ public class AppleDiscount(Product apple) : IDiscount
         return numberOfProducts * apple.GetPrice() * 0.8m;
     }
     
-    public bool IsApplicableTo(Product product) => product.GetName() == "Apple";
+    public bool IsApplicableTo(Product product) => product.GetName() == apple.GetName();
 }
 
 public class TomatoesDiscount(Product tomatoes) : IDiscount
@@ -23,7 +23,7 @@ public class TomatoesDiscount(Product tomatoes) : IDiscount
         return Math.Truncate(numberOfProducts / 2m) * 0.99m + (numberOfProducts % 2) * tomatoes.GetPrice();
     }
     
-    public bool IsApplicableTo(Product product) => product.GetName() == "Cherry tomatoes";
+    public bool IsApplicableTo(Product product) => product.GetName() == tomatoes.GetName();
 }
 
 public class ToothpasteDiscount(Product toothpaste) : IDiscount
@@ -33,7 +33,7 @@ public class ToothpasteDiscount(Product toothpaste) : IDiscount
         return Math.Truncate(numberOfProducts / 5m) * 7.49m + (numberOfProducts % 5) * toothpaste.GetPrice();
     }
     
-    public bool IsApplicableTo(Product product) => product.GetName() == "Toothpaste";
+    public bool IsApplicableTo(Product product) => product.GetName() == toothpaste.GetName();
 }
 
 public class RiceDiscount(Product rice) : IDiscount
@@ -43,7 +43,7 @@ public class RiceDiscount(Product rice) : IDiscount
         return numberOfProducts * rice.GetPrice() * 0.9m;
     }
     
-    public bool IsApplicableTo(Product product) => product.GetName() == "Rice";
+    public bool IsApplicableTo(Product product) => product.GetName() == rice.GetName();
 }
 
 public class ToothbrushDiscount(Product toothbrush) : IDiscount
@@ -53,5 +53,5 @@ public class ToothbrushDiscount(Product toothbrush) : IDiscount
         return Math.Truncate(numberOfProducts / 2m) * toothbrush.GetPrice() + (numberOfProducts % 2) * toothbrush.GetPrice();
     }
     
-    public bool IsApplicableTo(Product product) => product.GetName() == "Toothbrush";
+    public bool IsApplicableTo(Product product) => product.GetName() == toothbrush.GetName();
 }

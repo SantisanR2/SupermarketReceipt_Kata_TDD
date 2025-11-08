@@ -298,4 +298,23 @@ public class SupermarketReceiptTest
 
         receipt.GetAppliedDiscounts().Should().Be("Apple Discount Applied\nRice Discount Applied");
     }
+    
+    [Fact]
+    public void CuandoComproDosPastasDeDientes_UnCepilloDeDientes_Y_UnaBolsaDeArrozConDescuento_EnLosDescuentosAplicadosEnElRecibo_Debe_DecirDescuentoPastaDeDientesAplicado_DescuentoDeCepillosDeDientes_DescuentoDeArrozAplicado()
+    {
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(_toothpaste, 2);
+        supermarket.AddToCart(_toothbrush, 1);
+        supermarket.AddToCart(_rice, 1);
+        var discountToothpaste = new ToothpasteDiscount(_toothpaste);
+        var discountToothbrush = new ToothbrushDiscount(_toothbrush);
+        var discountRice = new RiceDiscount(_rice);
+        supermarket.ApplyDiscount(discountToothpaste);
+        supermarket.ApplyDiscount(discountToothbrush);
+        supermarket.ApplyDiscount(discountRice);
+
+        var receipt = supermarket.Checkout();
+
+        receipt.GetAppliedDiscounts().Should().Be("Toothpaste Discount Applied\nToothbrush Discount Applied\nRice Discount Applied");
+    }
 }
