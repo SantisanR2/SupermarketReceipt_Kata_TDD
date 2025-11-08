@@ -15,40 +15,17 @@ public class Supermarket
         var receipt = new Receipt();
         var products = new Dictionary<Product, decimal>();
 
-        foreach (var keyValuePair in _productsInCart)
+        foreach (var (product, numberOfProducts) in _productsInCart)
         {
-            var product = keyValuePair.Key;
-            var numberOfProducts = keyValuePair.Value;
+            decimal price;
+            var applicableDiscount = _discounts.FirstOrDefault(d => d.IsApplicableTo(product));
             
-            if (_discounts.Any(d => d is AppleDiscount) && product.GetName() is "Apple")
-            {
-                var appleDiscount = new AppleDiscount(product);
-                products.Add(product, appleDiscount.CalculatePrice(numberOfProducts));
-            }
-            else if (_discounts.Any(d => d is TomatoesDiscount) && product.GetName() is "Cherry tomatoes")
-            {
-                var tomatoesDiscount = new TomatoesDiscount(product);
-                products.Add(product, tomatoesDiscount.CalculatePrice(numberOfProducts));
-            }
-            else if (_discounts.Any(d => d is ToothpasteDiscount) && product.GetName() is "Toothpaste")
-            {
-                var toothpasteDiscount = new ToothpasteDiscount(product);
-                products.Add(product, toothpasteDiscount.CalculatePrice(numberOfProducts));
-            }
-            else if (_discounts.Any(d => d is RiceDiscount) && product.GetName() is "Rice")
-            {
-                var riceDiscount = new RiceDiscount(product);
-                products.Add(product, riceDiscount.CalculatePrice(numberOfProducts));
-            }
-            else if (_discounts.Any(d => d is ToothbrushDiscount) && product.GetName() is "Toothbrush")
-            {
-                var toothbrushDiscount = new ToothbrushDiscount(product);
-                products.Add(product, toothbrushDiscount.CalculatePrice(numberOfProducts));
-            }
+            if (applicableDiscount != null)
+                price = applicableDiscount.CalculatePrice(numberOfProducts);
             else
-            {
-                products.Add(product, product.GetPrice() * numberOfProducts);
-            }
+                price = product.GetPrice() * numberOfProducts;
+                
+            products.Add(product, price);
         }
         
         receipt.AddProducts(products);
