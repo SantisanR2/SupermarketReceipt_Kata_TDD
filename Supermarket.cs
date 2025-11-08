@@ -19,7 +19,7 @@ public class Supermarket
         {
             if (_discounts.Contains("toothbrush"))
             {
-                products.Add(product.Key, 0.99m);
+                products.Add(product.Key, Math.Truncate(product.Value/2m) * product.Key.GetPrice() + (product.Value % 2) * product.Key.GetPrice());
             }
             else
             {
