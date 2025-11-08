@@ -99,7 +99,7 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproUnKiloDeManzanasConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_1_592()
     {
-        var apples = new Product("Apple", 1.99m, ProductUnit.Unit);
+        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
         supermarket.AddToCart(apples, 1);
         supermarket.ApplyDiscount("apple");
@@ -112,7 +112,7 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosKilosDeManzanasConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_3_184()
     {
-        var apples = new Product("Apple", 1.99m, ProductUnit.Unit);
+        var apples = new Product("Apple", 1.99m, ProductUnit.Kilo);
         var supermarket = new Supermarket();
         supermarket.AddToCart(apples, 2);
         supermarket.ApplyDiscount("apple");
@@ -146,5 +146,18 @@ public class SupermarketReceiptTest
         var receipt = supermarket.Checkout();
         
         receipt.GetTotalPrice().Should().Be(4.482m);
+    }
+    
+    [Fact]
+    public void Cuando_ComproCincoTubosDePastaDeDientesConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_7_49()
+    {
+        var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(toothpaste, 1);
+        supermarket.ApplyDiscount("rice");
+        
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(2.241m);
     }
 }
