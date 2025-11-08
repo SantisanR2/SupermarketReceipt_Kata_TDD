@@ -31,4 +31,9 @@ public class Receipt
         
         return details.TrimEnd('\n');
     }
+
+    public object GetAppliedDiscounts()
+    {
+        throw new NotImplementedException();
+    }
 }

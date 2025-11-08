@@ -269,4 +269,17 @@ public class SupermarketReceiptTest
 
         receipt.GetItemDetails().Should().Be("Toothpaste 1 Unit\nRice 2 Bag\nCherry tomatoes 1 Box");
     }
+
+    [Fact]
+    public void CuandoComproUnKiloDeManzanasConDescuento_EnLosDescuentosAplicadosEnElRecibo_Debe_DecirDescuentoDeManzanasAplicado()
+    {
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(_apples, 1);
+        var discountApples = new AppleDiscount(_apples);
+        supermarket.ApplyDiscount(discountApples);
+
+        var receipt = supermarket.Checkout();
+
+        receipt.GetAppliedDiscounts().Should().Be("Apple Discount Applied");
+    }
 }
