@@ -69,4 +69,17 @@ public class SupermarketReceiptTest
         
         receipt.GetTotalPrice().Should().Be(3.67m);
     }
+    
+    [Fact]
+    public void Cuando_ComproDosCepillosDeDientesConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_0_99()
+    {
+        var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(toothbrush, 2);
+        supermarket.ApplyDiscount("toothbrushes");
+        
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(0.99m);
+    }
 }

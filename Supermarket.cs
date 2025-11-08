@@ -22,4 +22,9 @@ public class Supermarket
         receipt.AddProducts(products);
         return receipt;
     }
+
+    public void ApplyDiscount(string toothbrushes)
+    {
+        throw new NotImplementedException();
+    }
 }
