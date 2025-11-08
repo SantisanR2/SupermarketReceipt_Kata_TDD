@@ -282,4 +282,20 @@ public class SupermarketReceiptTest
 
         receipt.GetAppliedDiscounts().Should().Be("Apple Discount Applied");
     }
+    
+    [Fact]
+    public void CuandoComproUnKiloDeManzanas_Y_UnaBolsaDeArrozConDescuento_EnLosDescuentosAplicadosEnElRecibo_Debe_DecirDescuentoDeManzanasAplicado_DescuentoDeArrozAplicado()
+    {
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(_apples, 1);
+        supermarket.AddToCart(_rice, 1);
+        var discountApples = new AppleDiscount(_apples);
+        var discountRice = new RiceDiscount(_rice);
+        supermarket.ApplyDiscount(discountApples);
+        supermarket.ApplyDiscount(discountRice);
+
+        var receipt = supermarket.Checkout();
+
+        receipt.GetAppliedDiscounts().Should().Be("Apple Discount Applied\nRice Discount Applied");
+    }
 }
