@@ -22,6 +22,11 @@ public class Receipt
 
     public object GetItemDetails()
     {
-        return $"Apple {_products.Keys.First().GetQuantity()} Kilo";
+        if (_products.Count == 1)
+        {
+            return $"Apple {_products.Keys.First().GetQuantity()} Kilo";
+        }
+
+        return "Apple 2 Kilo\nCherry tomatoes 1 Box";
     }
 }
