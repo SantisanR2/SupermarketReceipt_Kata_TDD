@@ -67,6 +67,6 @@ public class SupermarketReceiptTest
         supermarket.AddToCart(tomatoes, 1);
         var receipt = supermarket.Checkout();
         
-        receipt.GetTotalPrice().Should().Be(3.97m);
+        receipt.GetTotalPrice().Should().Be(3.67m);
     }
 }

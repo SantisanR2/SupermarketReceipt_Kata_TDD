@@ -5,9 +5,13 @@ public class Receipt
     private Dictionary<Product, decimal> _products = [];
     public decimal GetTotalPrice()
     {
-        var price = _products.GetValueOrDefault(_products.Keys.First());
-        if (_products.Count == 2)
-            return price += 1.99m;
+        var price = 0m;
+
+        foreach (var product in _products)
+        {
+            price += product.Value;
+        }
+        
         return price;
     }
 

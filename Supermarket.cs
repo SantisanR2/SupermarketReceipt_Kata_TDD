@@ -13,11 +13,12 @@ public class Supermarket
     {
         var receipt = new Receipt();
         var products = new Dictionary<Product, decimal>();
-        products.Add(_productsInCart.Keys.First(), _productsInCart.GetValueOrDefault(_productsInCart.Keys.First()) * _productsInCart.Keys.First().GetPrice());
-        if (_productsInCart.Count == 2)
+
+        foreach (var product in _productsInCart)
         {
-            products.Add(new Product("Apple", 1.99m, ProductUnit.Kilo), 1.99m);
+            products.Add(product.Key, product.Key.GetPrice() * product.Value);
         }
+        
         receipt.AddProducts(products);
         return receipt;
     }
