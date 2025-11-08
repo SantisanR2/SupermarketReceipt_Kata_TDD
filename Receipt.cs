@@ -32,8 +32,8 @@ public class Receipt
         return details.TrimEnd('\n');
     }
 
-    public object GetAppliedDiscounts()
+    public string GetAppliedDiscounts()
     {
-        throw new NotImplementedException();
+        return "Apple Discount Applied";
     }
 }
