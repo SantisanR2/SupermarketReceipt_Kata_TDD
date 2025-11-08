@@ -153,11 +153,24 @@ public class SupermarketReceiptTest
     {
         var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
         var supermarket = new Supermarket();
-        supermarket.AddToCart(toothpaste, 1);
+        supermarket.AddToCart(toothpaste, 5);
         supermarket.ApplyDiscount("toothpaste");
         
         var receipt = supermarket.Checkout();
         
         receipt.GetTotalPrice().Should().Be(7.49m);
+    }
+    
+    [Fact]
+    public void Cuando_ComproSeisTubosDePastaDeDientesConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_9_28()
+    {
+        var toothpaste = new Product("Toothpaste", 1.79m, ProductUnit.Unit);
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(toothpaste, 6);
+        supermarket.ApplyDiscount("toothpaste");
+        
+        var receipt = supermarket.Checkout();
+        
+        receipt.GetTotalPrice().Should().Be(9.28m);
     }
 }
