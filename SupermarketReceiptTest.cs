@@ -256,4 +256,17 @@ public class SupermarketReceiptTest
 
         receipt.GetItemDetails().Should().Be("Apple 2 Kilo\nCherry tomatoes 1 Box");
     }
+    
+    [Fact]
+    public void Cuando_ComproUnaPastaDeDientes_DosBolsasDeArroz_Y_UnaCajaDeTomatesCherry_LosDetallesDeLaCompraDelRecibo_Debe_DecirUnaPastaDeDientes_DosBolsasDeArroz_Y_UnaCajaDeTomatesCherry()
+    {
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(_toothpaste, 1);
+        supermarket.AddToCart(_rice, 2);
+        supermarket.AddToCart(_tomatoes, 1);
+
+        var receipt = supermarket.Checkout();
+
+        receipt.GetItemDetails().Should().Be("Toothpaste 1 Unit\nRice 2 Bag\nCherry tomatoes 1 Box");
+    }
 }
