@@ -76,7 +76,7 @@ public class SupermarketReceiptTest
         var toothbrush = new Product("Toothbrush", 0.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(toothbrush, 2);
-        supermarket.ApplyDiscount("toothbrushes");
+        supermarket.ApplyDiscount("toothbrush");
         
         var receipt = supermarket.Checkout();
         
