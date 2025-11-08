@@ -99,7 +99,7 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproUnKiloDeManzanasConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_1_592()
     {
-        var apples = new Product("Apple", 0.99m, ProductUnit.Unit);
+        var apples = new Product("Apple", 1.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(apples, 1);
         supermarket.ApplyDiscount("apple");
@@ -112,7 +112,7 @@ public class SupermarketReceiptTest
     [Fact]
     public void Cuando_ComproDosKilosDeManzanasConDescuento_ElPrecioTotalDelRecibo_Debe_SerDe_3_184()
     {
-        var apples = new Product("Apple", 0.99m, ProductUnit.Unit);
+        var apples = new Product("Apple", 1.99m, ProductUnit.Unit);
         var supermarket = new Supermarket();
         supermarket.AddToCart(apples, 2);
         supermarket.ApplyDiscount("apple");

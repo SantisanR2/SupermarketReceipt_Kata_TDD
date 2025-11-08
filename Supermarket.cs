@@ -23,7 +23,7 @@ public class Supermarket
             }
             else if (_discounts.Contains("apple"))
             {
-                products.Add(product.Key, 1.592m);
+                products.Add(product.Key, product.Value * product.Key.GetPrice() * 0.8m);
             }
             else
             {
