@@ -5,10 +5,12 @@ public class Product
     private decimal _price;
     private string _name;
     private int _quantity;
+    private ProductUnit _unit;
     public Product(string name, decimal price, ProductUnit unit)
     {
         _name = name;
         _price = price;
+        _unit = unit;
     }
 
     public decimal GetPrice()
@@ -29,5 +31,10 @@ public class Product
     public int GetQuantity()
     {
         return _quantity;
+    }
+
+    public string getUnit()
+    {
+        return _unit.ToString();
     }
 }

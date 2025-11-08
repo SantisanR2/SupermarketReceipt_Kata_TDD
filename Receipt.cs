@@ -22,11 +22,13 @@ public class Receipt
 
     public object GetItemDetails()
     {
-        if (_products.Count == 1)
+        var details = "";
+        
+        foreach (var (product, price) in _products)
         {
-            return $"Apple {_products.Keys.First().GetQuantity()} Kilo";
+            details += $"{product.GetName()} {product.GetQuantity()} {product.getUnit()}\n";
         }
-
-        return "Apple 2 Kilo\nCherry tomatoes 1 Box";
+        
+        return details.TrimEnd('\n');
     }
 }
