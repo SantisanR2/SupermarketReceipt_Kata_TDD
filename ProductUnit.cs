@@ -3,5 +3,6 @@
 public enum ProductUnit
 {
     Unit,
-    Kilo
+    Kilo,
+    Box
 }
