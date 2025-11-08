@@ -33,6 +33,10 @@ public class Supermarket
             {
                 products.Add(product.Key, Math.Truncate(product.Value/5m) * 7.49m + (product.Value % 5) * product.Key.GetPrice());
             }
+            else if (_discounts.Contains("tomatoes"))
+            {
+                products.Add(product.Key, 0.99m);
+            }
             else
             {
                 products.Add(product.Key, product.Key.GetPrice() * product.Value);
