@@ -35,7 +35,7 @@ public class Supermarket
             }
             else if (_discounts.Contains("tomatoes"))
             {
-                products.Add(product.Key, 0.99m);
+                products.Add(product.Key, Math.Truncate(product.Value/2m) * 0.99m + (product.Value % 2) * product.Key.GetPrice());
             }
             else
             {
