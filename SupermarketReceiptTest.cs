@@ -244,4 +244,16 @@ public class SupermarketReceiptTest
 
         receipt.GetItemDetails().Should().Be("Apple 2 Kilo");
     }
+    
+    [Fact]
+    public void Cuando_ComproDosKilosDeManzanas_Y_UnaCajaDeTomatesCherry_LosDetallesDeLaCompraDelRecibo_Debe_DecirDosKilosDeManzana_Y_UnaCajaDeTomatesCherry()
+    {
+        var supermarket = new Supermarket();
+        supermarket.AddToCart(_apples, 2);
+        supermarket.AddToCart(_tomatoes, 1);
+
+        var receipt = supermarket.Checkout();
+
+        receipt.GetItemDetails().Should().Be("Apple 2 Kilo\nCherry tomatoes 1 Box");
+    }
 }
