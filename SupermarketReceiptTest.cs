@@ -317,4 +317,12 @@ public class SupermarketReceiptTest
 
         receipt.GetAppliedDiscounts().Should().Be("Toothpaste Discount Applied\nToothbrush Discount Applied\nRice Discount Applied");
     }
+
+    [Fact]
+    public void Cuando_CreoUnProductoConPrecioNegativo_Debe_DarUnaExcepcion()
+    {
+        Action act = () => new Product("Producto", -15m, ProductUnit.Bag);
+        act.Should().Throw<ArgumentException>();
+    }
+
 }
