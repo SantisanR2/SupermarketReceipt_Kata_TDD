@@ -7,7 +7,7 @@ public class Supermarket
 
     public void AddToCart(Product product, int quantity)
     {
-        if (quantity < 0)
+        if (quantity <= 0)
             throw new ArgumentException("La cantidad no puede ser negativa.");
         
         _productsInCart.Add(product, quantity);
