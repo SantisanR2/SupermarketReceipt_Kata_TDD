@@ -322,7 +322,18 @@ public class SupermarketReceiptTest
     public void Cuando_CreoUnProductoConPrecioNegativo_Debe_DarUnaExcepcion()
     {
         Action act = () => new Product("Producto", -15m, ProductUnit.Bag);
+        
         act.Should().Throw<ArgumentException>();
     }
 
+    [Fact]
+    public void Cuando_AgregoAlCarritoUnItemConCantidadNegativa_Debe_DarUnaExcepcion()
+    {
+        var product = new Product("Producto", 15m, ProductUnit.Bag);
+        var supermarket = new Supermarket();
+        
+        Action act = () => supermarket.AddToCart(product, -2);
+            
+        act.Should().Throw<ArgumentException>();
+    }
 }
