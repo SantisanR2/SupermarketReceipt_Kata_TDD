@@ -1,31 +1,30 @@
-﻿namespace SupermarketReceipt;
+﻿// csharp
+using System;
 
-public class Product(string name, decimal price, ProductUnit unit)
+namespace SupermarketReceipt;
+
+public class Product
 {
+    private readonly string _name;
+    private readonly decimal _price;
+    private readonly ProductUnit _unit;
     private int _quantity;
 
-    public decimal GetPrice()
+    public Product(string name, decimal price, ProductUnit unit)
     {
-        return price;
+        if (price < 0) throw new ArgumentException("El precio no puede ser negativo.");
+        _name = name;
+        _price = price;
+        _unit = unit;
     }
 
-    public string GetName()
-    {
-        return name;
-    }
+    public decimal GetPrice() => _price;
 
-    public void AddQuantity(int numberOfProducts)
-    {
-        _quantity = numberOfProducts;
-    }
+    public string GetName() => _name;
 
-    public int GetQuantity()
-    {
-        return _quantity;
-    }
+    public void AddQuantity(int numberOfProducts) => _quantity = numberOfProducts;
 
-    public string GetUnit()
-    {
-        return unit.ToString();
-    }
+    public int GetQuantity() => _quantity;
+
+    public string GetUnit() => _unit.ToString();
 }
