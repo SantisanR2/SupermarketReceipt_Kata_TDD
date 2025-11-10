@@ -336,4 +336,15 @@ public class SupermarketReceiptTest
             
         act.Should().Throw<ArgumentException>();
     }
+    
+    [Fact]
+    public void Cuando_AgregoAlCarritoUnItemConCantidadEnCero_Debe_DarUnaExcepcion()
+    {
+        var product = new Product("Producto", 15m, ProductUnit.Bag);
+        var supermarket = new Supermarket();
+        
+        Action act = () => supermarket.AddToCart(product, 0);
+            
+        act.Should().Throw<ArgumentException>();
+    }
 }
